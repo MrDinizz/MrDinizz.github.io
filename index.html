@@ -27,11 +27,6 @@
 
         }
 
-        let img;
-        function preload() {
-        img = loadImage('https://piskel-imgstore-b.appspot.com/img/948d001e-028b-11ea-b8ba-55b10e8ac524.gif');
-        }
-
         function draw() {
         //R, G, B
         background('#7C3D99');
@@ -39,9 +34,9 @@
         fill('white');
         stroke('black');
         strokeWeight(1);
-        rect(0, larg/3, larg/3, 200, 10);
-        rect(larg/3, larg/3, larg/3, 200, 10);
-        rect(2*larg/3, larg/3, larg/3, 200, 10);
+        rect(0, larg/3, larg/3, alt, 10);
+        rect(larg/3, larg/3, larg/3, alt, 10);
+        rect(2*larg/3, larg/3, larg/3, alt, 10);
 
         if (x<larg/3) {
             fill('blue');
@@ -79,7 +74,7 @@
         text('RESPOSTA 2', 590, 550);
         text('RESPOSTA 3', 1040, 550);
         text(tempo, 30, 50);
-        image(img, 1230, 50);
+        text('0 0 0', 1230, 50);
         textSize(50);
         text('PERGUNTA', 550, 190);
         
