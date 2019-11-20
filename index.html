@@ -88,7 +88,9 @@
         text('RESPOSTA 2', larg-1000, larg/3+120);
         text('RESPOSTA 3', larg-400, larg/3+120);
         text(tempo, 30, 50);
-        image(LIFE[1], 60, 60, 100, 100);
+        image(LIFE[1], 1300, 10, 80, 80);
+        image(LIFE[1], 1380, 10, 80, 80);
+        image(LIFE[1], 1460, 10, 80, 80);
         textSize(50);
         text('PERGUNTA', larg-950, 190);
         
@@ -96,6 +98,7 @@
         stroke('black');
         strokeWeight(1);
         ellipse(x, larg/3-40, 80, 80);
+        image(TERRA[1], x-70, larg/3-120, 130, 130)
 
         //VELOCIDADE DA BOLA
             if(x<larg) {
