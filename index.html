@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <script language="javascript" type="text/javascript" src="https://github.com/processing/p5.js/releases/download/0.5.16/p5.js"></script>
         <script language="javascript" type="text/javascript" src="Jogo.js"></script>
-        <script language="javascript" type="text/javascript" src="https://github.com/MrDinizz/mrdinizz.github.io/tree/master/imagens"></script>
+
 
         <style> body {padding: 0; margin: 0;} </style>
     </head>
@@ -21,7 +21,7 @@
         var larg=window.innerWidth;
         var LIFE=[], TERRA=[];
         
-        function preload() {
+       function preload() {
             for(a=0; a<5; a++) {
                 if(a<=3) {
                     LIFE[a]=loadImage('imagens/life'+(a+1)+'.png');
@@ -34,6 +34,7 @@
                 TERRA[b]=loadImage('imagens/terra'+(b+1)+'.png');
             }
         }
+        
 
         function setup() {
         createCanvas(larg, alt);
@@ -56,19 +57,19 @@
             fill('blue');
             stroke('black');
             strokeWeight(1);
-            rect(0, larg/3, larg/3, 200, 10);
+            rect(0, larg/3, larg/3, alt, 10);
         }
         else if (x>larg/3 && x<2*larg/3) {
             fill('blue');
             stroke('black');
             strokeWeight(1);
-            rect(larg/3, larg/3, larg/3, 200, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
         }
         else {
             fill('blue');
             stroke('black');
             strokeWeight(1);
-            rect(2*larg/3, larg/3, larg/3, 200, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
         }
         
         //TEMPO:
@@ -84,18 +85,18 @@
 
         fill('black');
         textSize(30);
-        text('RESPOSTA 1', 135, 550);
-        text('RESPOSTA 2', 590, 550);
-        text('RESPOSTA 3', 1040, 550);
+        text('RESPOSTA 1', larg-1500, larg/3+120);
+        text('RESPOSTA 2', larg-1000, larg/3+120);
+        text('RESPOSTA 3', larg-400, larg/3+120);
         text(tempo, 30, 50);
-        text('0 0 0', 1230, 50);
+        text('0 0 0', larg-100, 50);
         textSize(50);
-        text('PERGUNTA', 550, 190);
+        text('PERGUNTA', larg-950, 190);
         
         fill('blue');
         stroke('black');
         strokeWeight(1);
-        ellipse(x, 415, 80, 80);
+        ellipse(x, larg/3-40, 80, 80);
 
         //VELOCIDADE DA BOLA
             if(x<larg) {
