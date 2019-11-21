@@ -1,3 +1,4 @@
+
 <html>
     <head>
         <title>
@@ -19,7 +20,7 @@
         var alt=window.innerHeight;
         var larg=window.innerWidth;
         var LIFE=[], TERRA=[];
-        
+
        function preload() {
             for(a=0; a<5; a++) {
                 if(a<3) {
@@ -81,18 +82,24 @@
                     tempo=0;
                 }
             }
-
+        //LIFE:
+            if(fr%30==0) {
+                i++;
+                if(i==5) {
+                    i=0;
+                }
+            }
         fill('black');
         textSize(30);
-        text('RESPOSTA 1', larg-1500, larg/3+120);
-        text('RESPOSTA 2', larg-1000, larg/3+120);
-        text('RESPOSTA 3', larg-400, larg/3+120);
+        text('RESPOSTA 1', 0.1*larg, 0.414*larg);
+        text('RESPOSTA 2', 0.429*larg, 0.414*larg);
+        text('RESPOSTA 3', 0.773*larg, 0.414*larg);
         text('TEMPO: '+tempo, 30, 50);
-        image(LIFE[1], 1300, 10, 80, 80);
-        image(LIFE[1], 1380, 10, 80, 80);
-        image(LIFE[1], 1460, 10, 80, 80);
+        image(LIFE[i], 0.805*larg, 10, 80, 80);
+        image(LIFE[i], 0.864*larg, 10, 80, 80);
+        image(LIFE[i], 0.922*larg, 10, 80, 80);
         textSize(50);
-        text('PERGUNTA', larg-950, 190);
+        text('PERGUNTA', 0.392*larg, 0.304*alt);
         
         fill('blue');
         stroke('black');
