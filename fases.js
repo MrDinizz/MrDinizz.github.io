@@ -81,15 +81,15 @@ function fase_1 () {
   fill('black');
   textSize(30);
 
-  text('ACRE, TOCANTINS,', 80, 540);
-  text('MARANHÃO, BAHIA E PARÁ', 30, 575);
+  text('ACRE, TOCANTINS,', 0.0585*larg, 540);
+  text('MARANHÃO, BAHIA E PARÁ', 0.022*larg, 575);
 
-  text('AMAZONAS, ACRE,', 560, 520);
-  text('RORAIMA, PARÁ, AMAPÁ', 520, 555);
-  text('RONDÔNIA, TOCANTINS', 530, 590);
+  text('AMAZONAS, ACRE,', 0.41*larg, 520);
+  text('RORAIMA, PARÁ, AMAPÁ', 0.381*larg, 555);
+  text('RONDÔNIA, TOCANTINS', 0.388*larg, 590);
 
-  text('RIO GRANDE DO NORTE', 970, 540);
-  text('E RIO GRANDE DO SUL', 977, 575);
+  text('RIO GRANDE DO NORTE', 0.710*larg, 540);
+  text('E RIO GRANDE DO SUL', 0.715*larg, 575);
 
   text('TEMPO: '+tempo, 30, 50);
   image(LIFE[i], 0.805*larg, 10, 80, 80);
