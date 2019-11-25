@@ -276,7 +276,6 @@ function fase3 () {
             var alt=window.innerHeight;
             var larg=window.innerWidth;
             var LIFE=[], TERRA=[];
-            vidas=3
 
             function preload() {
                 for(a=0; a<5; a++) {
