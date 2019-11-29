@@ -58,6 +58,9 @@
                     if(fase==5) {
                         fase5 ();
                     }
+                    if(vidas==0) {
+                        fim ();
+                    }
             }
 
             function fase1 () {
@@ -549,7 +552,11 @@
                         }
                     }
             }
-           
+            function fim () {
+                background('#7C3D99');
+                textSize(70);
+                text('FIM DE JOGO', 0.056*larg, 0.24*alt);
+            }
             function keyPressed () {
                 if(fase==1) {
                     if(x>=0 && x<larg/3 && keyCode===ENTER) {
