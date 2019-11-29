@@ -55,6 +55,7 @@
                     }
                     if(vidas==0) {
                         fim ();
+                        window.location.reload();
                     }
             }
             function fase1 () {
@@ -488,11 +489,6 @@
                 textSize(70);
                 fill(225, 215, 0);
                 text('FIM DE JOGO', 0.34*larg, 0.47*alt);
-                function keyPressed () {
-                    if(keyCode==ENTER) {
-                        telaAtiva=1;
-                    }
-                }
             }
             function keyPressed () {
                 if(fase==1) {
