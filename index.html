@@ -1,522 +1,560 @@
 <html>
-    <head>
-        <title>
-            EXEMPLO
-        </title>
-        <meta charset="UTF-8">
-        <script language="javascript" type="text/javascript" src="https://github.com/processing/p5.js/releases/download/0.5.16/p5.js"></script>
-        
-        <style> body {padding: 0; margin: 0;} </style>
-    </head>
-    <body>
-        <script>
-            var x = 30;
-            var v = 0;
-            var i=0;
-            var tempo=30;
-            var fr=0;
-            var alt=window.innerHeight;
-            var larg=window.innerWidth;
-            var LIFE=[], TERRA=[];
-            vidas=3;
-            fase=1;
-            function preload() {
-                for(a=0; a<5; a++) {
-                    if(a<3) {
-                        LIFE[a]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/life'+(a+1)+'.png');
-                    }
-                    else {
-                        LIFE[a]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/life'+(5-a)+'.png');
-                    }
-                }
-                for(b=0; b<2; b++) {
-                    TERRA[b]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/terra'+(b+1)+'.png');
-                }
-            }
-            function setup() {
-            createCanvas(larg, alt);
-            frameRate(60);
-            }
-            function draw() {
-                    if(fase==1) {
-                        fase1 ();
-                    }
-                    if(fase==2) {
-                        fase2 ();
-                    }
-                    if(fase==3) {
-                        fase3 ();
-                    }
-                    if(fase==4) {
-                        fase4 ();
-                    }
-                    if(fase==5) {
-                        fase5 ();
-                    }
-                    if(vidas==0) {
-                        fim ();
-                    }
-            }
-            function fase1 () {
-                background('#7C3D99');
-                fill('white');
-                stroke('black');
-                strokeWeight(1);
-                rect(0, larg/3, larg/3, alt, 10);
-                rect(larg/3, larg/3, larg/3, alt, 10);
-                rect(2*larg/3, larg/3, larg/3, alt, 10);
-                if (x<larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(0, larg/3, larg/3, alt, 10);
-                }
-                else if (x>larg/3 && x<2*larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(larg/3, larg/3, larg/3, alt, 10);
+  <head>
+    <title>
+      GEOQUEST
+    </title>
+    <meta charset="UTF-8">
+    <script language="javascript" type="text/javascript" src="https://github.com/processing/p5.js/releases/download/0.5.16/p5.js"></script>
+
+    <style> body {padding: 0; margin: 0;} </style>
+  </head>
+  <body>
+    <script>
+        var x = 30;
+        var y=305;
+        var v = 0;
+        var i=0;
+        var tempo=30;
+        var fr=0;
+        var alt=window.innerHeight;
+        var larg=window.innerWidth;
+        var LIFE=[], TERRA=[];
+        vidas=3;
+        fase=0;
+        function preload() {
+            for(a=0; a<5; a++) {
+                if(a<3) {
+                    LIFE[a]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/life'+(a+1)+'.png');
                 }
                 else {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(2*larg/3, larg/3, larg/3, alt, 10);
+                    LIFE[a]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/life'+(5-a)+'.png');
                 }
-                //TEMPO:
-                    fr=frameCount;
-                    if(fr%60==0) {
-                        if(tempo>0) {
-                            tempo--;
-                        }
-                        else {
-                            fase++;
-                            vidas--;
-                            tempo=31;
-                            v=0;
-                        }
+            }
+            for(b=0; b<2; b++) {
+                TERRA[b]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/terra'+(b+1)+'.png');
+            }
+        }
+        function setup() {
+        createCanvas(larg, alt);
+        frameRate(60);
+        }
+        function draw() {
+                if(fase==1) {
+                    menu ();
+                }
+                if(fase==1) {
+                    fase1 ();
+                }
+                if(fase==2) {
+                    fase2 ();
+                }
+                if(fase==3) {
+                    fase3 ();
+                }
+                if(fase==4) {
+                    fase4 ();
+                }
+                if(fase==5) {
+                    fase5 ();
+                }
+                if(vidas==0) {
+                    fim ();
+                }
+                if(fase==0) {
+                    menu ();
+                }
+        }
+        function menu () {
+            background('#7C3D99');
+        
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(560, 305, 220, 55, 10);
+            rect(560, 375, 220, 55, 10);
+            rect(560, 445, 220, 55, 10);
+            textSize(120);
+            fill(225, 215, 0);
+            text('GEOQUEST', 347, 150);
+            textSize(30);
+            fill(225, 215, 0);
+            text('EXTRATIVISMO E IMPACTOS AMBIENTAIS', 387, 190);
+            
+            textSize(18);
+            fill('black');
+            text('PRESSIONE ENTER PARA SELECIONAR', 500, 280);
+            textSize(32);
+            fill('black');
+            
+            text('JOGAR', 617, 342);
+            text('INSTRUÇÕES', 567, 412);
+            text('SAIR', 632, 482);
+            
+            noFill();
+            stroke(225, 215, 0);
+            strokeWeight(7);
+            rect(560, y, 220, 57, 10);
+        }
+        function fase1 () {
+            background('#7C3D99');
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(0, larg/3, larg/3, alt, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
+            if (x<larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(0, larg/3, larg/3, alt, 10);
+            }
+            else if (x>larg/3 && x<2*larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(larg/3, larg/3, larg/3, alt, 10);
+            }
+            else {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(2*larg/3, larg/3, larg/3, alt, 10);
+            }
+            //TEMPO:
+                fr=frameCount;
+                if(fr%60==0) {
+                    if(tempo>0) {
+                        tempo--;
                     }
-                //LIFE:
-                    if(fr%20==0) {
-                        i++;
-                        if(i==5) {
-                            i=0;
-                        }
+                    else {
+                        fase++;
+                        vidas--;
+                        tempo=31;
+                        v=0;
                     }
-                fill('black');
-                textSize(30);
-                text('ACRE, TOCANTINS,', 0.0585*larg, 0.864*alt);
-                text('MARANHÃO, BAHIA E PARÁ', 0.022*larg, 0.92*alt);
-                text('AMAZONAS, ACRE,', 0.41*larg, 0.832*alt);
-                text('RORAIMA, PARÁ, AMAPÁ', 0.381*larg, 0.888*alt);
-                text('RONDÔNIA, TOCANTINS', 0.388*larg, 0.944*alt);
-                text('RIO GRANDE DO NORTE', 0.710*larg, 0.864*alt);
-                text('E RIO GRANDE DO SUL', 0.715*larg, 0.92*alt);
-                text('TEMPO: '+tempo, 30, 0.08*alt);
+                }
+            //LIFE:
+                if(fr%20==0) {
+                    i++;
+                    if(i==5) {
+                        i=0;
+                    }
+                }
+            fill('black');
+            textSize(30);
+            text('ACRE, TOCANTINS,', 0.0585*larg, 0.864*alt);
+            text('MARANHÃO, BAHIA E PARÁ', 0.022*larg, 0.92*alt);
+            text('AMAZONAS, ACRE,', 0.41*larg, 0.832*alt);
+            text('RORAIMA, PARÁ, AMAPÁ', 0.381*larg, 0.888*alt);
+            text('RONDÔNIA, TOCANTINS', 0.388*larg, 0.944*alt);
+            text('RIO GRANDE DO NORTE', 0.710*larg, 0.864*alt);
+            text('E RIO GRANDE DO SUL', 0.715*larg, 0.92*alt);
+            text('TEMPO: '+tempo, 30, 0.08*alt);
+            image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
+            image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+            image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            textSize(50);
+            text('A FLORESTA AMAZÔNICA SE ESTENDE POR QUAIS', 0.044*larg, 0.24*alt);
+            text('ESTADOS BRASILEIROS?', 0.256*larg, 0.352*alt);
+            fill('blue');
+            stroke('black');
+            strokeWeight(1);
+            ellipse(x, larg/3-40, 80, 80);
+            image(TERRA[1], x-67, larg/3-120, 130, 130)
+            //VELOCIDADE DA BOLA
+                if(x<larg) {
+                    x+=10+v;
+                }
+                else {
+                    x=0;
+                    if(v<35) {
+                        v+=3;
+                    }
+                    else {
+                        v=35;
+                    }
+                }
+            }
+        function fase2 () {
+            background('#7C3D99');
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(0, larg/3, larg/3, alt, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
+            if (x<larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(0, larg/3, larg/3, alt, 10);
+            }
+            else if (x>larg/3 && x<2*larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(larg/3, larg/3, larg/3, alt, 10);
+            }
+            else {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(2*larg/3, larg/3, larg/3, alt, 10);
+            }
+            //TEMPO:
+                fr=frameCount;
+                if(fr%60==0) {
+                    if(tempo>0) {
+                        tempo--;
+                    }
+                    else {
+                        fase++;
+                        vidas--;
+                        tempo=31;
+                        v=0;
+                    }
+                }
+            //LIFE:
+                if(fr%20==0) {
+                    i++;
+                    if(i==5) {
+                        i=0;
+                    }
+                }
+            fill('black');
+            textSize(30);
+            text('CORAÇÃO DO MUNDO', 0.0485*larg, 0.864*alt);
+            text('ESTÔMAGO DO MUNDO', 0.371*larg, 0.864*alt);
+            text('PULMÃO DO MUNDO', 0.730*larg, 0.864*alt);
+            text('TEMPO: '+tempo, 30, 0.08*alt);
+            if(vidas==3) {
                 image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
                 image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
                 image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                textSize(50);
-                text('A FLORESTA AMAZÔNICA SE ESTENDE POR QUAIS', 0.044*larg, 0.24*alt);
-                text('ESTADOS BRASILEIROS?', 0.256*larg, 0.352*alt);
-                fill('blue');
-                stroke('black');
-                strokeWeight(1);
-                ellipse(x, larg/3-40, 80, 80);
-                image(TERRA[1], x-67, larg/3-120, 130, 130)
-                //VELOCIDADE DA BOLA
-                    if(x<larg) {
-                        x+=10+v;
-                    }
-                    else {
-                        x=0;
-                        if(v<35) {
-                            v+=3;
-                        }
-                        else {
-                            v=35;
-                        }
-                    }
-                }
-            function fase2 () {
-                background('#7C3D99');
-                fill('white');
-                stroke('black');
-                strokeWeight(1);
-                rect(0, larg/3, larg/3, alt, 10);
-                rect(larg/3, larg/3, larg/3, alt, 10);
-                rect(2*larg/3, larg/3, larg/3, alt, 10);
-                if (x<larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(0, larg/3, larg/3, alt, 10);
-                }
-                else if (x>larg/3 && x<2*larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(larg/3, larg/3, larg/3, alt, 10);
-                }
-                else {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(2*larg/3, larg/3, larg/3, alt, 10);
-                }
-                //TEMPO:
-                    fr=frameCount;
-                    if(fr%60==0) {
-                        if(tempo>0) {
-                            tempo--;
-                        }
-                        else {
-                            fase++;
-                            vidas--;
-                            tempo=31;
-                            v=0;
-                        }
-                    }
-                //LIFE:
-                    if(fr%20==0) {
-                        i++;
-                        if(i==5) {
-                            i=0;
-                        }
-                    }
-                fill('black');
-                textSize(30);
-                text('CORAÇÃO DO MUNDO', 0.0485*larg, 0.864*alt);
-                text('ESTÔMAGO DO MUNDO', 0.371*larg, 0.864*alt);
-                text('PULMÃO DO MUNDO', 0.730*larg, 0.864*alt);
-                text('TEMPO: '+tempo, 30, 0.08*alt);
-                if(vidas==3) {
-                    image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                } 
-                if(vidas==2) {
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                textSize(50);
-                text('A FLORESTA AMAZÔNICA TAMBÉM É', 0.176*larg, 0.24*alt);
-                text('CONHECIDA COMO:', 0.307*larg, 0.352*alt);
-                fill('blue');
-                stroke('black');
-                strokeWeight(1);
-                ellipse(x, larg/3-40, 80, 80);
-                image(TERRA[1], x-67, larg/3-120, 130, 130)
-                //VELOCIDADE DA BOLA
-                    if(x<larg) {
-                        x+=10+v;
-                    }
-                    else {
-                        x=0;
-                        if(v<35) {
-                            v+=3;
-                        }
-                        else {
-                            v=35;
-                        }
-                    }
-                }
-            function fase3 () {
-                background('#7C3D99');
-                fill('white');
-                stroke('black');
-                strokeWeight(1);
-                rect(0, larg/3, larg/3, alt, 10);
-                rect(larg/3, larg/3, larg/3, alt, 10);
-                rect(2*larg/3, larg/3, larg/3, alt, 10);
-                if (x<larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(0, larg/3, larg/3, alt, 10);
-                }
-                else if (x>larg/3 && x<2*larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(larg/3, larg/3, larg/3, alt, 10);
-                }
-                else {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(2*larg/3, larg/3, larg/3, alt, 10);
-                }
-                //TEMPO:
-                    fr=frameCount;
-                    if(fr%60==0) {
-                        if(tempo>0) {
-                            tempo--;
-                        }
-                        else {
-                            fase++;
-                            vidas--;
-                            tempo=31;
-                            v=0;
-                        }
-                    }
-                //LIFE:
-                    if(fr%20==0) {
-                        i++;
-                        if(i==5) {
-                            i=0;
-                        }
-                    }
-                fill('black');
-                textSize(30);
-                text('PICO 31 DE MARÇO', 0.0585*larg, 0.864*alt);
-                text('PICO GUIMARÃES ROSA', 0.371*larg, 0.864*alt);
-                text('PICO DA NEBLINA', 0.740*larg, 0.864*alt);
-                text('TEMPO: '+tempo, 30, 0.08*alt);
-                if(vidas==3) {
-                    image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                } 
-                if(vidas==2) {
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                if(vidas==1) {
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                textSize(50);
-                text('QUAL O NOME DA MAIOR SERRA QUE', 0.166*larg, 0.24*alt);
-                text('TEMOS NO TERRITÓRIO BRASILEIRO?', 0.166*larg, 0.352*alt);
-                fill('blue');
-                stroke('black');
-                strokeWeight(1);
-                ellipse(x, larg/3-40, 80, 80);
-                image(TERRA[1], x-67, larg/3-120, 130, 130)
-                //VELOCIDADE DA BOLA
-                    if(x<larg) {
-                        x+=10+v;
-                    }
-                    else {
-                        x=0;
-                        if(v<35) {
-                            v+=3;
-                        }
-                        else {
-                            v=35;
-                        }
-                    }
-                }
-            function fase4 () {
-                background('#7C3D99');
-                fill('white');
-                stroke('black');
-                strokeWeight(1);
-                rect(0, larg/3, larg/3, alt, 10);
-                rect(larg/3, larg/3, larg/3, alt, 10);
-                rect(2*larg/3, larg/3, larg/3, alt, 10);
-                if (x<larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(0, larg/3, larg/3, alt, 10);
-                }
-                else if (x>larg/3 && x<2*larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(larg/3, larg/3, larg/3, alt, 10);
-                }
-                else {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(2*larg/3, larg/3, larg/3, alt, 10);
-                }
-                //TEMPO:
-                    fr=frameCount;
-                    if(fr%60==0) {
-                        if(tempo>0) {
-                            tempo--;
-                        }
-                        else {
-                            fase++;
-                            vidas--;
-                            tempo=31;
-                            v=0;
-                        }
-                    }
-                //LIFE:
-                    if(fr%20==0) {
-                        i++;
-                        if(i==5) {
-                            i=0;
-                        }
-                    }
-                fill('black');
-                textSize(30);
-                text('CARNE BOVINA', 0.0785*larg, 0.864*alt);
-                text('E SOJA', 0.12*larg, 0.924*alt);
-                text('CANA-DE-AÇÚCAR', 0.4*larg, 0.864*alt);
-                text('E CAFÉ', 0.457*larg, 0.924*alt);
-                text('PETRÓLEO', 0.770*larg, 0.864*alt);
-                text('E LATÉX', 0.782*larg, 0.924*alt);
-                text('TEMPO: '+tempo, 30, 0.08*alt);
-                if(vidas==3) {
-                    image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                } 
-                if(vidas==2) {
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                if(vidas==1) {
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                textSize(40);
-                text('COM A ABERTURA DAS RODOVIAS E A IMPLEMENTAÇÃO', 0.086*larg, 0.24*alt);
-                text('DE HIDROVIAS EM ALGUNS RIOS AMAZÔNICOS, A', 0.136*larg, 0.352*alt);
-                text('AMAZÔNIA COMEÇOU A ATRAIS PRODUTORES DE: ', 0.13*larg, 0.452*alt);
-                fill('blue');
-                stroke('black');
-                strokeWeight(1);
-                ellipse(x, larg/3-40, 80, 80);
-                image(TERRA[1], x-67, larg/3-120, 130, 130)
-                //VELOCIDADE DA BOLA
-                    if(x<larg) {
-                        x+=10+v;
-                    }
-                    else {
-                        x=0;
-                        if(v<35) {
-                            v+=3;
-                        }
-                        else {
-                            v=35;
-                        }
-                    }
+            } 
+            if(vidas==2) {
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
             }
-            function fase5 () {
-                 background('#7C3D99');
-                fill('white');
-                stroke('black');
-                strokeWeight(1);
-                rect(0, larg/3, larg/3, alt, 10);
-                rect(larg/3, larg/3, larg/3, alt, 10);
-                rect(2*larg/3, larg/3, larg/3, alt, 10);
-                if (x<larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(0, larg/3, larg/3, alt, 10);
-                }
-                else if (x>larg/3 && x<2*larg/3) {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(larg/3, larg/3, larg/3, alt, 10);
+            textSize(50);
+            text('A FLORESTA AMAZÔNICA TAMBÉM É', 0.176*larg, 0.24*alt);
+            text('CONHECIDA COMO:', 0.307*larg, 0.352*alt);
+            fill('blue');
+            stroke('black');
+            strokeWeight(1);
+            ellipse(x, larg/3-40, 80, 80);
+            image(TERRA[1], x-67, larg/3-120, 130, 130)
+            //VELOCIDADE DA BOLA
+                if(x<larg) {
+                    x+=10+v;
                 }
                 else {
-                    fill('#008080');
-                    stroke('black');
-                    strokeWeight(2);
-                    rect(2*larg/3, larg/3, larg/3, alt, 10);
-                }
-                //TEMPO:
-                    fr=frameCount;
-                    if(fr%60==0) {
-                        if(tempo>0) {
-                            tempo--;
-                        }
-                        else {
-                            fase++;
-                            vidas--;
-                            tempo=31;
-                            v=0;
-                        }
-                    }
-                //LIFE:
-                    if(fr%20==0) {
-                        i++;
-                        if(i==5) {
-                            i=0;
-                        }
-                    }
-                fill('black');
-                textSize(30);
-                text('CAFÉ', 0.13*larg, 0.864*alt);
-                text('LATÉX', 0.46*larg, 0.864*alt);
-                text('ALGODÃO', 0.8*larg, 0.864*alt);
-                text('TEMPO: '+tempo, 30, 0.08*alt);
-                if(vidas==3) {
-                    image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                } 
-                if(vidas==2) {
-                    image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                if(vidas==1) {
-                    image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
-                }
-                textSize(50);
-                text('NO FIM DO SÉCULO XIX E INÍCIO DO SÉCULO XX,', 0.056*larg, 0.24*alt);
-                text('O BRASIL TORNOU-SE O MAIOR FORNECEDOR DE: ', 0.04*larg, 0.352*alt);
-                fill('blue');
-                stroke('black');
-                strokeWeight(1);
-                ellipse(x, larg/3-40, 80, 80);
-                image(TERRA[1], x-67, larg/3-120, 130, 130)
-                //VELOCIDADE DA BOLA
-                    if(x<larg) {
-                        x+=10+v;
+                    x=0;
+                    if(v<35) {
+                        v+=3;
                     }
                     else {
-                        x=0;
-                        if(v<35) {
-                            v+=3;
-                        }
-                        else {
-                            v=35;
-                        }
-                    }
-            }
-            function fim () {
-                background('#7C3D99');
-                textSize(70);
-                fill(225, 215, 0);
-                text('FIM DE JOGO', 0.34*larg, 0.47*alt);
-                function keyPressed () {
-                    if(keyCode==ENTER) {
-                        telaAtiva=1;
+                        v=35;
                     }
                 }
             }
-            function keyPressed () {
-                if(fase==1) {
-                    if(x>=0 && x<larg/3 && keyCode===ENTER) {
+        function fase3 () {
+            background('#7C3D99');
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(0, larg/3, larg/3, alt, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
+            if (x<larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(0, larg/3, larg/3, alt, 10);
+            }
+            else if (x>larg/3 && x<2*larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(larg/3, larg/3, larg/3, alt, 10);
+            }
+            else {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(2*larg/3, larg/3, larg/3, alt, 10);
+            }
+            //TEMPO:
+                fr=frameCount;
+                if(fr%60==0) {
+                    if(tempo>0) {
+                        tempo--;
+                    }
+                    else {
+                        fase++;
                         vidas--;
-                        fase++;
-                        tempo=30;
-                        v=0;
-                    }
-                    if(x>=larg/3 && x<2*larg/3 && keyCode===ENTER) {
-                        alert("PARABENS");
-                        fase++;
-                        tempo=30;
-                        v=0;
-                    }
-                    if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
-                        vidas--;
-                        fase++;
-                        tempo=30;
+                        tempo=31;
                         v=0;
                     }
                 }
+            //LIFE:
+                if(fr%20==0) {
+                    i++;
+                    if(i==5) {
+                        i=0;
+                    }
+                }
+            fill('black');
+            textSize(30);
+            text('PICO 31 DE MARÇO', 0.0585*larg, 0.864*alt);
+            text('PICO GUIMARÃES ROSA', 0.371*larg, 0.864*alt);
+            text('PICO DA NEBLINA', 0.740*larg, 0.864*alt);
+            text('TEMPO: '+tempo, 30, 0.08*alt);
+            if(vidas==3) {
+                image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            } 
+            if(vidas==2) {
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            if(vidas==1) {
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            textSize(50);
+            text('QUAL O NOME DA MAIOR SERRA QUE', 0.166*larg, 0.24*alt);
+            text('TEMOS NO TERRITÓRIO BRASILEIRO?', 0.166*larg, 0.352*alt);
+            fill('blue');
+            stroke('black');
+            strokeWeight(1);
+            ellipse(x, larg/3-40, 80, 80);
+            image(TERRA[1], x-67, larg/3-120, 130, 130)
+            //VELOCIDADE DA BOLA
+                if(x<larg) {
+                    x+=10+v;
+                }
                 else {
-                    if(fase==2) {
+                    x=0;
+                    if(v<35) {
+                        v+=3;
+                    }
+                    else {
+                        v=35;
+                    }
+                }
+            }
+        function fase4 () {
+            background('#7C3D99');
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(0, larg/3, larg/3, alt, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
+            if (x<larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(0, larg/3, larg/3, alt, 10);
+            }
+            else if (x>larg/3 && x<2*larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(larg/3, larg/3, larg/3, alt, 10);
+            }
+            else {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(2*larg/3, larg/3, larg/3, alt, 10);
+            }
+            //TEMPO:
+                fr=frameCount;
+                if(fr%60==0) {
+                    if(tempo>0) {
+                        tempo--;
+                    }
+                    else {
+                        fase++;
+                        vidas--;
+                        tempo=31;
+                        v=0;
+                    }
+                }
+            //LIFE:
+                if(fr%20==0) {
+                    i++;
+                    if(i==5) {
+                        i=0;
+                    }
+                }
+            fill('black');
+            textSize(30);
+            text('CARNE BOVINA', 0.0785*larg, 0.864*alt);
+            text('E SOJA', 0.12*larg, 0.924*alt);
+            text('CANA-DE-AÇÚCAR', 0.4*larg, 0.864*alt);
+            text('E CAFÉ', 0.457*larg, 0.924*alt);
+            text('PETRÓLEO', 0.770*larg, 0.864*alt);
+            text('E LATÉX', 0.782*larg, 0.924*alt);
+            text('TEMPO: '+tempo, 30, 0.08*alt);
+            if(vidas==3) {
+                image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            } 
+            if(vidas==2) {
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            if(vidas==1) {
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            textSize(40);
+            text('COM A ABERTURA DAS RODOVIAS E A IMPLEMENTAÇÃO', 0.086*larg, 0.24*alt);
+            text('DE HIDROVIAS EM ALGUNS RIOS AMAZÔNICOS, A', 0.136*larg, 0.352*alt);
+            text('AMAZÔNIA COMEÇOU A ATRAIS PRODUTORES DE: ', 0.13*larg, 0.452*alt);
+            fill('blue');
+            stroke('black');
+            strokeWeight(1);
+            ellipse(x, larg/3-40, 80, 80);
+            image(TERRA[1], x-67, larg/3-120, 130, 130)
+            //VELOCIDADE DA BOLA
+                if(x<larg) {
+                    x+=10+v;
+                }
+                else {
+                    x=0;
+                    if(v<35) {
+                        v+=3;
+                    }
+                    else {
+                        v=35;
+                    }
+                }
+        }
+        function fase5 () {
+            background('#7C3D99');
+            fill('white');
+            stroke('black');
+            strokeWeight(1);
+            rect(0, larg/3, larg/3, alt, 10);
+            rect(larg/3, larg/3, larg/3, alt, 10);
+            rect(2*larg/3, larg/3, larg/3, alt, 10);
+            if (x<larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(0, larg/3, larg/3, alt, 10);
+            }
+            else if (x>larg/3 && x<2*larg/3) {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(larg/3, larg/3, larg/3, alt, 10);
+            }
+            else {
+                fill('#008080');
+                stroke('black');
+                strokeWeight(2);
+                rect(2*larg/3, larg/3, larg/3, alt, 10);
+            }
+            //TEMPO:
+                fr=frameCount;
+                if(fr%60==0) {
+                    if(tempo>0) {
+                        tempo--;
+                    }
+                    else {
+                        fase++;
+                        vidas--;
+                        tempo=31;
+                        v=0;
+                    }
+                }
+            //LIFE:
+                if(fr%20==0) {
+                    i++;
+                    if(i==5) {
+                        i=0;
+                    }
+                }
+            fill('black');
+            textSize(30);
+            text('CAFÉ', 0.13*larg, 0.864*alt);
+            text('LATÉX', 0.46*larg, 0.864*alt);
+            text('ALGODÃO', 0.8*larg, 0.864*alt);
+            text('TEMPO: '+tempo, 30, 0.08*alt);
+            if(vidas==3) {
+                image(LIFE[i], 0.805*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            } 
+            if(vidas==2) {
+                image(LIFE[i], 0.864*larg, 0.016*alt, 80, 80);
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            if(vidas==1) {
+                image(LIFE[i], 0.922*larg, 0.016*alt, 80, 80);
+            }
+            textSize(50);
+            text('NO FIM DO SÉCULO XIX E INÍCIO DO SÉCULO XX,', 0.056*larg, 0.24*alt);
+            text('O BRASIL TORNOU-SE O MAIOR FORNECEDOR DE: ', 0.04*larg, 0.352*alt);
+            fill('blue');
+            stroke('black');
+            strokeWeight(1);
+            ellipse(x, larg/3-40, 80, 80);
+            image(TERRA[1], x-67, larg/3-120, 130, 130)
+            //VELOCIDADE DA BOLA
+                if(x<larg) {
+                    x+=10+v;
+                }
+                else {
+                    x=0;
+                    if(v<35) {
+                        v+=3;
+                    }
+                    else {
+                        v=35;
+                    }
+                }
+        }
+        function fim () {
+            background('#7C3D99');
+            textSize(70);
+            fill(225, 215, 0);
+            text('FIM DE JOGO', 0.34*larg, 0.47*alt);
+        }
+        function keyPressed () {
+            if(vidas==0) {
+                if(keyCode===ENTER) {
+                    fase=0;
+                }
+            }
+            else {
+                if(fase==0) {
+                    if (keyCode === DOWN_ARROW) {
+                        if(y<445)
+                        y+=70;
+                    } else if (keyCode === UP_ARROW) {
+                        if(y>305) 
+                        y-=70;
+                    }
+                    if(y>=305 && y<=360 && keyCode===ENTER) {
+                        alert("JOGAR");
+                        fase++;
+                    }
+                    if(y>=375 && y<=430 && keyCode===ENTER) {
+                        alert("INSTRUCOES");
+                    }
+                    if(y>=445 && y<=500 && keyCode===ENTER) {
+                        alert("ADEUS...");
+                    }
+                }
+                else {
+                    if(fase==1) {
                         if(x>=0 && x<larg/3 && keyCode===ENTER) {
                             vidas--;
                             fase++;
@@ -524,20 +562,20 @@
                             v=0;
                         }
                         if(x>=larg/3 && x<2*larg/3 && keyCode===ENTER) {
-                            vidas--;
+                            alert("PARABENS");
                             fase++;
                             tempo=30;
                             v=0;
                         }
                         if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
-                            alert("PARABENS");
+                            vidas--;
                             fase++;
                             tempo=30;
                             v=0;
                         }
                     }
                     else {
-                        if(fase==3) {
+                        if(fase==2) {
                             if(x>=0 && x<larg/3 && keyCode===ENTER) {
                                 vidas--;
                                 fase++;
@@ -558,9 +596,9 @@
                             }
                         }
                         else {
-                            if(fase==4) {
+                            if(fase==3) {
                                 if(x>=0 && x<larg/3 && keyCode===ENTER) {
-                                    alert("PARABENS");
+                                    vidas--;
                                     fase++;
                                     tempo=30;
                                     v=0;
@@ -572,29 +610,52 @@
                                     v=0;
                                 }
                                 if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
-                                    vidas--;
+                                    alert("PARABENS");
                                     fase++;
                                     tempo=30;
                                     v=0;
                                 }
                             }
                             else {
-                                if(fase==5) {
+                                if(fase==4) {
                                     if(x>=0 && x<larg/3 && keyCode===ENTER) {
-                                        vidas--;
+                                        alert("PARABENS");
+                                        fase++;
+                                        tempo=30;
+                                        v=0;
                                     }
                                     if(x>=larg/3 && x<2*larg/3 && keyCode===ENTER) {
-                                        alert("PARABENS");
+                                        vidas--;
+                                        fase++;
+                                        tempo=30;
+                                        v=0;
                                     }
                                     if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
+                                        vidas--;
+                                        fase++;
+                                        tempo=30;
+                                        v=0;
+                                    }
+                                }
+                                else {
+                                    if(fase==5) {
+                                        if(x>=0 && x<larg/3 && keyCode===ENTER) {
                                             vidas--;
+                                        }
+                                        if(x>=larg/3 && x<2*larg/3 && keyCode===ENTER) {
+                                            alert("PARABENS");
+                                        }
+                                        if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
+                                                vidas--;
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }           
-        </script>
-    </body>
+            }
+        }           
+    </script>
+  </body>
 </html>
