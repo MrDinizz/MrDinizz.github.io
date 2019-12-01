@@ -11,16 +11,16 @@
   <body>
     <script>
         var x = 30;
-        var y=305;
+        var y = 305;
         var v = 0;
-        var i=0;
-        var tempo=30;
-        var fr=0;
-        var alt=window.innerHeight;
-        var larg=window.innerWidth;
-        var LIFE=[], TERRA=[];
-        vidas=3;
-        fase=0;
+        var i = 0;
+        var tempo = 30;
+        var fr = 0;
+        var alt = window.innerHeight;
+        var larg = window.innerWidth;
+        var LIFE = [], TERRA = [];
+        var vidas = 3;
+        var fase = 0;
         function preload() {
             for(a=0; a<5; a++) {
                 if(a<3) {
@@ -34,10 +34,12 @@
                 TERRA[b]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/terra'+(b+1)+'.png');
             }
         }
+
         function setup() {
         createCanvas(larg, alt);
         frameRate(60);
         }
+
         function draw() {
                 if(fase==1) {
                     menu ();
@@ -57,13 +59,20 @@
                 if(fase==5) {
                     fase5 ();
                 }
+                if(fase==6) {
+                    parabens ();
+                }
                 if(vidas==0) {
                     fim ();
                 }
                 if(fase==0) {
                     menu ();
                 }
+                if(fase==-1) {
+                    instrucoes ();
+                }
         }
+
         function menu () {
             background('#7C3D99');
         
@@ -95,6 +104,7 @@
             strokeWeight(7);
             rect(560, y, 220, 57, 10);
         }
+
         function fase1 () {
             background('#7C3D99');
             fill('white');
@@ -176,6 +186,7 @@
                     }
                 }
             }
+
         function fase2 () {
             background('#7C3D99');
             fill('white');
@@ -259,6 +270,7 @@
                     }
                 }
             }
+
         function fase3 () {
             background('#7C3D99');
             fill('white');
@@ -345,6 +357,7 @@
                     }
                 }
             }
+
         function fase4 () {
             background('#7C3D99');
             fill('white');
@@ -435,6 +448,7 @@
                     }
                 }
         }
+
         function fase5 () {
             background('#7C3D99');
             fill('white');
@@ -521,16 +535,58 @@
                     }
                 }
         }
+        function instrucoes() {
+            background('#7FDBFF');
+            
+            fill('white');
+            stroke('black');
+            strokeWeight(2);
+            rect(240, 200, 850, 80, 10);
+            rect(240, 300, 850, 80, 10);
+            rect(240, 400, 850, 80, 10);
+            textSize(22);
+            fill('black');
+            text('INSTRUÇÃO 1:', 250, 230);
+            text('INSTRUÇÃO 2:', 250, 330);
+            text('INSTRUÇÃO 3:', 250, 430);
+            text('PRESSIONE SETA A ESQUERDA PARA VOLTAR', 400, 500);
+            fill('white');
+            stroke('red');
+            strokeWeight(1);
+            textSize(36);
+            fill('black');
+            text('INSTRUÇÕES DO GEOQUEST', 450, 55);
+           if(keyCode===LEFT_ARROW){
+             fase=0;
+           }
+        }
+
         function fim () {
             background('#7C3D99');
             textSize(70);
             fill(225, 215, 0);
             text('FIM DE JOGO', 0.34*larg, 0.47*alt);
         }
+
+        function parabens () {
+            background('#7C3D99');
+            textSize(70);
+            fill(225, 215, 0);
+            text('PARABÉNS', 0.36*larg, 0.3*alt);
+            fill('#00FFFF');
+            if(vidas==1) {
+                text('VOCÊ FICOU COM '+vidas+' VIDA', 0.17*larg, 0.5*alt );
+            }
+            else {
+                text('VOCÊ FICOU COM '+vidas+' VIDAS', 0.17*larg, 0.5*alt );
+            }
+            text('E ACERTOU '+(2+vidas)+' PERGUNTAS', 0.17*larg, 0.7*alt );
+        }
         function keyPressed () {
             if(vidas==0) {
                 if(keyCode===ENTER) {
                     fase=0;
+                    vidas=3;
                 }
             }
             else {
@@ -543,11 +599,10 @@
                         y-=70;
                     }
                     if(y>=305 && y<=360 && keyCode===ENTER) {
-                        alert("JOGAR");
-                        fase++;
+                        fase=1;
                     }
                     if(y>=375 && y<=430 && keyCode===ENTER) {
-                        alert("INSTRUCOES");
+                        fase=-1;
                     }
                     if(y>=445 && y<=500 && keyCode===ENTER) {
                         alert("ADEUS...");
@@ -641,12 +696,27 @@
                                     if(fase==5) {
                                         if(x>=0 && x<larg/3 && keyCode===ENTER) {
                                             vidas--;
+                                            if(vidas!==0) {
+                                                fase=6;
+                                            }
                                         }
                                         if(x>=larg/3 && x<2*larg/3 && keyCode===ENTER) {
                                             alert("PARABENS");
+                                            fase=6;
                                         }
                                         if(x>=2*larg/3 && x<=larg && keyCode===ENTER) {
                                                 vidas--;
+                                                if(vidas!==0) {
+                                                    fase=6;
+                                                }
+                                        }
+                                    }
+                                    else {
+                                        if(fase==6) {
+                                            if(keyCode===ENTER) {
+                                                fase=0;
+                                                vidas=3;
+                                            }
                                         }
                                     }
                                 }
