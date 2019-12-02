@@ -22,6 +22,7 @@
         var vidas = 3;
         var fase = 0;
         function preload() {
+
             for(a=0; a<5; a++) {
                 if(a<3) {
                     LIFE[a]=loadImage('https://raw.githubusercontent.com/MrDinizz/mrdinizz.github.io/master/imagens/life'+(a+1)+'.png');
@@ -36,6 +37,7 @@
         }
 
         function setup() {
+
         createCanvas(larg, alt);
         frameRate(60);
         }
@@ -541,21 +543,22 @@
             fill('white');
             stroke('black');
             strokeWeight(2);
-            rect(240, 200, 850, 80, 10);
-            rect(240, 300, 850, 80, 10);
-            rect(240, 400, 850, 80, 10);
+            rect(200, 150, 940, 350, 10);
             textSize(22);
             fill('black');
-            text('INSTRUÇÃO 1:', 250, 230);
-            text('INSTRUÇÃO 2:', 250, 330);
-            text('INSTRUÇÃO 3:', 250, 430);
-            text('PRESSIONE SETA A ESQUERDA PARA VOLTAR', 400, 500);
+            text('--> VOCÊ DEVERÁ APERTAR A TECLA ENTER QUANDO O PERSONAGEM ESTIVER ', 250, 230);
+            text('SOBRE A RESPOSTA UE VOCÊ DESEJA SELECIONAR', 250, 260);
+            text('--> TERÁ 30 SEGUNDOS PARA RESPONDER CADA QUESTÃO E 3 VIDAS PARA', 250, 320);
+            text('COMPLETAR O QUEST', 250, 350);
+            text('--> CASO O TEMPO PARA RESPONDER ACABE, VOCÊ PERDERÁ UMA VIDA ', 250, 410);
+            text('BOA SORTE, QUE A FORÇA ESTEJA COM VOCÊ! ', 250, 460);
+            text('PRESSIONE A SETA ESQUERDA PARA VOLTAR', 400, 550);
             fill('white');
-            stroke('red');
+            stroke('black');
             strokeWeight(1);
             textSize(36);
             fill('black');
-            text('INSTRUÇÕES DO GEOQUEST', 450, 55);
+            text('INSTRUÇÕES DO GEOQUEST', 420, 55);
            if(keyCode===LEFT_ARROW){
              fase=0;
            }
@@ -606,7 +609,6 @@
                     }
                     if(y>=445 && y<=500 && keyCode===ENTER) {
                         alert("ADEUS...");
-                        window.close();
                     }
                 }
                 else {
